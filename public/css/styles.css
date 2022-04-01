@@ -1,0 +1,253 @@
+
+body {
+  font-family: "Montserrat";
+  text-align: center;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Montserrat-Bold";
+}
+
+p {
+  color: #8f8f8f;
+}
+
+/* Headings */
+
+
+.big-heading {
+  font-family: "Montserrat-Black";
+  font-size: 3.5rem;
+  line-height: 1.5;
+}
+
+.section-heading {
+  font-size: 3rem;
+  line-height: 1.5;
+}
+
+/* Containers */
+
+.container-fluid{
+  padding: 7% 15%;
+}
+
+/* Sections */
+
+.colored-section {
+  background-color: #CEAB93;
+  color: #fff;
+}
+
+.white-section {
+  background-color: #fff;
+}
+
+/* Navigation Bar */
+
+.navbar {
+  padding: 0 0 4.5rem;
+}
+
+.navbar-brand {
+  font-family: "Ubuntu";
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.nav-item {
+  padding: 0 18px;
+}
+
+.nav-link {
+  font-size: 1.2rem;
+  font-family: "Montserrat-Light";
+}
+
+/* Buttons */
+
+.download-button {
+  margin: 5% 3% 5% 0;
+}
+
+/* Title Section */
+
+#title {
+  color: #fff;
+  text-align: left;
+}
+
+#title .container-fluid {
+  padding: 3% 15% 7%;
+}
+
+/* Title Image */
+
+.title-image {
+  width: 130%;
+  border-radius: 8%;
+}
+
+/* Features Section */
+
+#features {
+  position: relative;
+}
+
+.feature-title {
+  font-size: 1.5rem;
+}
+
+.feature-box {
+  padding: 4.5%;
+}
+
+.icon {
+  color: #CEAB93;
+  margin-bottom: 1rem;
+}
+
+.icon:hover {
+  color: #DAB88B;
+}
+
+/* Testimonial Section */
+
+#testimonials {
+  background-color: #E3CAA5;
+}
+
+.testimonial-text {
+  font-size: 3rem;
+  line-height: 1.5;
+}
+
+.testimonial-image {
+  width: 10%;
+  border-radius: 100%;
+  margin: 20px;
+}
+
+
+#press {
+  background-color: #E3CAA5;
+  padding-bottom: 3%;
+}
+
+.press-logo {
+  width: 15%;
+  margin: 20px 20px 50px;
+}
+
+/* Pricing Section */
+
+#pricing {
+  padding: 100px;
+}
+
+.price-text {
+  font-size: 3rem;
+  line-height: 1.5;
+}
+
+.pricing-column {
+  padding: 3% 2%;
+}
+
+
+/* Detail section */
+.detail-heading{
+  padding:5% 0 1%;
+}
+
+
+.detail-heading h1{
+  font-size: 3rem;
+}
+
+.detail-img {
+  width: 100%;
+}
+.detail-card{
+  margin: 0 2%;
+}
+
+/* CTA Section */
+
+
+/* Footer Section */
+
+
+.social-icon {
+  margin: 20px 10px;
+}
+
+
+
+/* blog */
+
+.blog-header{
+  padding: 3% 15% 0%;
+}
+
+
+
+.post-card{
+  margin: 1.5% 0;
+  text-align: left;
+}
+
+
+
+
+.post-title{
+  color: #000000;
+}
+
+.new-post{
+  text-align: left;
+  padding: 5% 15%;
+}
+
+.big-blog-pic{
+  width: 200%;
+}
+.blog-example-pic{
+  width: 120%;
+}
+
+
+/* Customer post */
+.customer-post{
+  margin: 1.5% 3%;
+  text-align: left;
+}
+
+/* login */
+.login{
+  text-align: left;
+  padding: 2% 15%;
+}
+
+.register{
+  text-align: left;
+  padding: 2% 15%;
+}
+
+@media (max-width: 1028px) {
+
+  #title {
+    text-align: center;
+  }
+
+  .title-image {
+    width: 100%;
+
+  }
+  .big-blog-pic{
+    width: 100%;
+  }
+  .blog-example-pic{
+    width: 100%;
+  }
+}

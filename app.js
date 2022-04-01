@@ -334,7 +334,7 @@ app.get("/posts/:postCategory/:postName", function(req, res) {
               }
             });
           }
-        };
+        });
       });
 
 

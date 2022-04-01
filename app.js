@@ -28,7 +28,9 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-mongoose.connect("mongodb+srv://admin-Fiona:" + process.env.MONGODB_PW + "@cluster0.i4dfa.mongodb.net/blogDB", {useNewUrlParser: true});
+mongoose.connect("mongodb+srv://admin-Fiona:" + process.env.MONGODB_PW + "@cluster0.i4dfa.mongodb.net/blogDB", {
+  useNewUrlParser: true
+});
 
 
 const postSchema = {
@@ -46,7 +48,7 @@ const listSchema = {
 const List = mongoose.model("List", listSchema);
 
 
-const userSchema = new mongoose.Schema ({
+const userSchema = new mongoose.Schema({
   username: String,
   password: String,
   googleId: String,
@@ -78,7 +80,9 @@ passport.use(new GoogleStrategy({
   function(accessToken, refreshToken, profile, cb) {
     // console.log(profile);
 
-    User.findOrCreate({ googleId: profile.id }, function (err, user) {
+    User.findOrCreate({
+      googleId: profile.id
+    }, function(err, user) {
       return cb(err, user);
     });
   }
@@ -101,33 +105,38 @@ app.get("/blog", function(req, res) {
 });
 
 app.get("/auth/google",
-  passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/plus.login',
-            'https://www.googleapis.com/auth/userinfo.email'] })
+  passport.authenticate('google', {
+    scope: ['https://www.googleapis.com/auth/plus.login',
+      'https://www.googleapis.com/auth/userinfo.email'
+    ]
+  })
 );
 
 app.get("/auth/google/compose",
-  passport.authenticate('google', { failureRedirect: "/login" }),
+  passport.authenticate('google', {
+    failureRedirect: "/login"
+  }),
   function(req, res) {
     // Successful authentication, redirect to secrets.
     res.redirect("/compose");
   });
 
 
-app.get("/login", function(req, res){
+app.get("/login", function(req, res) {
   res.render("login");
 });
 
-app.get("/register", function(req, res){
+app.get("/register", function(req, res) {
   res.render("register");
 });
 
-app.get("/logout", function(req, res){
+app.get("/logout", function(req, res) {
   req.logout();
   res.redirect("/blog");
 });
 
 app.get("/compose", function(req, res) {
-  if (req.isAuthenticated()){
+  if (req.isAuthenticated()) {
     res.render("compose");
   } else {
     res.redirect("/login");
@@ -270,14 +279,16 @@ app.post("/compose", function(req, res) {
 
 });
 
-app.post("/register", function(req, res){
+app.post("/register", function(req, res) {
 
-  User.register({username: req.body.username}, req.body.password, function(err, user){
+  User.register({
+    username: req.body.username
+  }, req.body.password, function(err, user) {
     if (err) {
       console.log(err);
       res.redirect("/register");
     } else {
-      passport.authenticate("local")(req, res, function(){
+      passport.authenticate("local")(req, res, function() {
         res.render("compose");
       });
     }
@@ -285,18 +296,18 @@ app.post("/register", function(req, res){
 
 });
 
-app.post("/login", function(req, res){
+app.post("/login", function(req, res) {
 
   const user = new User({
     username: req.body.username,
     password: req.body.password
   });
 
-  req.login(user, function(err){
+  req.login(user, function(err) {
     if (err) {
       console.log(err);
     } else {
-      passport.authenticate("local")(req, res, function(){
+      passport.authenticate("local")(req, res, function() {
         res.render("compose");
       });
     }
@@ -306,28 +317,27 @@ app.post("/login", function(req, res){
 
 
 app.get("/posts/:postCategory/:postName", function(req, res) {
-  const requestedTitle = _.lowerCase(req.params.postName);
-  const requestedCategoty = _.lowerCase(req.params.postCategory);
-  List.findOne({
-    name: requestedCategoty
-  }, function(err, foundList) {
-    if (!err) {
-      foundList.posts.forEach(function(post) {
-        const storedTitle = _.lowerCase(post.title);
+      const requestedTitle = _.lowerCase(req.params.postName);
+      const requestedCategoty = _.lowerCase(req.params.postCategory);
+      List.findOne({
+          name: requestedCategoty
+        }, function(err, foundList) {
+          if (!err) {
+            foundList.posts.forEach(function(post) {
+              const storedTitle = _.lowerCase(post.title);
 
-        if (storedTitle === requestedTitle) {
-          res.render("post", {
-            title: post.title,
-            content: post.content
-          });
-
-        }
+              if (storedTitle === requestedTitle) {
+                res.render("post", {
+                  title: post.title,
+                  content: post.content
+                });
+              }
+            });
+          }
+        };
       });
-    }
-  });
-});
 
 
-app.listen(3000, function() {
-  console.log("Server started on port 3000");
-});
+    app.listen(3000 || process.env.PORT, function() {
+      console.log("Server started on port 3000");
+    });

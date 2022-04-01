@@ -74,7 +74,7 @@ passport.deserializeUser(function(id, done) {
 passport.use(new GoogleStrategy({
     clientID: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
-    callbackURL: "http://radiant-fjord-20031.herokuapp.com/auth/google/compose",
+    callbackURL: "https://radiant-fjord-20031.herokuapp.com/auth/google/compose",
     userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo"
   },
   function(accessToken, refreshToken, profile, cb) {
@@ -337,7 +337,10 @@ app.get("/posts/:postCategory/:postName", function(req, res) {
         });
       });
 
-
-    app.listen(3000 || process.env.PORT, function() {
+    let port = process.env.PORT;
+    if(port == null || port == ""){
+      port = 3000;
+    }
+    app.listen(port, function() {
       console.log("Server started on port 3000");
     });
